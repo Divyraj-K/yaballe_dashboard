@@ -101,9 +101,9 @@ st.plotly_chart(fig, use_container_width=True)
 cf['signup_date'] = pd.to_datetime(cf['signup_date'], errors='coerce')
 
 cf['signup_month'] = cf['signup_date'].dt.to_period('M').astype(str)
-#cf2 = cf[cf['segment'].isin(['New'])]
+cf2 = cf[cf['segment'].isin(['New'])]
 monthly_signups = (
-    cf.groupby('signup_month')['customer_id'].nunique().reset_index(name='new_customers').sort_values('signup_month'))
+    cf2.groupby('signup_month')['customer_id'].nunique().reset_index(name='new_customers').sort_values('signup_month'))
 
 fig = px.area(
     monthly_signups,
@@ -181,6 +181,7 @@ fig4 = px.bar(country_churn.sort_values('churn_pct', ascending=False),x='country
 fig4.update_layout(yaxis_title='Churn Rate (%)',xaxis_title='Country')
 
 st.plotly_chart(fig4, use_container_width=True)
+
 
 
 
