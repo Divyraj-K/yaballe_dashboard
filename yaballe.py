@@ -7,10 +7,10 @@ st.set_page_config(layout="wide")
 
 @st.cache_data
 def get_data():
-    customers = pd.read_csv("C:/Users/Zarna/Desktop/New folder (2)/customers.csv")
+    customers = pd.read_csv("customers.csv")
     customers['connection_type'] = customers['connection_type'].fillna('Unknown')
-    subscription = pd.read_csv("C:/Users/Zarna/Desktop/New folder (2)/subscription_events.csv")
-    product_events = pd.read_json("C:/Users/Zarna/Desktop/New folder (2)/product_events.json")
+    subscription = pd.read_csv("subscription_events.csv")
+    product_events = pd.read_json("product_events.json")
     return customers, subscription, product_events
 customers, subscription, product_events = get_data()
 
@@ -180,5 +180,6 @@ fig4 = px.bar(country_churn.sort_values('churn_pct', ascending=False),x='country
 fig4.update_layout(yaxis_title='Churn Rate (%)',xaxis_title='Country')
 
 st.plotly_chart(fig4, use_container_width=True)
+
 
 
