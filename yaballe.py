@@ -79,12 +79,7 @@ col4.metric("Total Revenue USD", int(subs['price_usd'].sum()))
 #-------------------------------------------------------------------------------------
 
 ####
-#subs['month'] = subs['event_ts'].dt.to_period('M').astype(str)
-subs['event_ts'] = pd.to_datetime(
-    subs['event_ts'],
-    errors='coerce',
-    utc=True
-)
+subs['month'] = subs['event_ts'].dt.to_period('M').astype(str)
 
 
 #---------------------Month wise Revenue --------------
@@ -102,7 +97,8 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 #-------------------------------------------------------------------------------------
-cf['signup_date'] = pd.to_datetime(cf['signup_date'],format='%d-%m-%Y')
+#cf['signup_date'] = pd.to_datetime(cf['signup_date'],format='%d-%m-%Y')
+cf['signup_date'] = pd.to_datetime(cf['signup_date'], errors='coerce')
 
 cf['signup_month'] = cf['signup_date'].dt.to_period('M').astype(str)
 #cf2 = cf[cf['segment'].isin(['New'])]
@@ -185,6 +181,7 @@ fig4 = px.bar(country_churn.sort_values('churn_pct', ascending=False),x='country
 fig4.update_layout(yaxis_title='Churn Rate (%)',xaxis_title='Country')
 
 st.plotly_chart(fig4, use_container_width=True)
+
 
 
 
