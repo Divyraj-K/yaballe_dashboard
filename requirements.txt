@@ -1,4 +1,5 @@
 streamlit
+datetime
 pandas
 numpy
 plotly
